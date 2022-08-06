@@ -12,28 +12,29 @@ import SubDescription from "./components/SubDescription";
 function App() {
   const tips = ["5%", "10%", "15%", "25%", "50%"];
 
-  const [bill, setBill] = useState<number>();
+  const [bill, setBill] = useState<number | undefined>(undefined);
   const [tipPerson, setTipPerson] = useState<string>("");
   const [totalTip, setTotalTip] = useState<string>("");
-  const [people, setPeople] = useState<number>();
-  const [percentual, setPercentual] = useState<number>();
-  const [error, setError] = useState<string>("");
+  const [people, setPeople] = useState<number | undefined>(undefined);
+  const [percentual, setPercentual] = useState<number | undefined>(undefined);
 
   const handleClickTip = (e: any) => {
     const percentual = e.target.value.replace("%", "");
     setPercentual(parseInt(percentual));
-    setError("");
   };
 
   const handleReset = () => {
     setTotalTip("");
     setTipPerson("");
+    setBill(0);
+    setPercentual(0);
+    setPeople(0);
   };
 
   useEffect(() => {
     if (bill && percentual && people) {
       const totalTip = (bill * percentual) / 100;
-      const tipPerson = totalTip / people;
+      const tipPerson = parseFloat(totalTip.toFixed(2)) / people;
       setTotalTip(totalTip.toString());
       setTipPerson(tipPerson.toString());
     }
@@ -49,10 +50,7 @@ function App() {
             <InputNumber
               type="number"
               value={bill}
-              onChange={(e) => [
-                setBill(parseFloat(e.target.value)),
-                setError(""),
-              ]}
+              onChange={(e) => setBill(parseFloat(e.target.value))}
               placeholder="0000,00"
             />
 
@@ -79,10 +77,7 @@ function App() {
             <InputNumber
               type="number"
               value={people}
-              onChange={(e) => [
-                setPeople(parseInt(e.target.value)),
-                setError(""),
-              ]}
+              onChange={(e) => setPeople(parseInt(e.target.value))}
               placeholder="0"
             />
           </form>
