@@ -10,7 +10,7 @@ interface Props {
 const InputNumber = ({ type, value, onChange, placeholder }: Props) => {
   return (
     <input
-      className="bg-blue-200 py-2 rounded font-bold text-xl text-right text-blue-300 px-4 mb-8"
+      className="bg-blue-200 py-2 rounded font-bold text-xl text-right text-blue-300 px-4 mb-8 md:mr-4"
       type={type}
       min="0"
       step="any"

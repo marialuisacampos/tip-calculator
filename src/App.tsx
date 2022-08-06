@@ -8,6 +8,7 @@ import Label from "./components/Label";
 import Nav from "./components/Nav";
 import Number from "./components/Number";
 import SubDescription from "./components/SubDescription";
+
 function App() {
   const tips = ["5%", "10%", "15%", "25%", "50%"];
 
@@ -41,9 +42,9 @@ function App() {
   return (
     <div>
       <Nav />
-      <main className="bg-white rounded-t-3xl p-8">
+      <main className="bg-white rounded-t-3xl p-8 md:flex md:w-fit md:rounded-2xl md:mx-auto">
         <section>
-          <form className="flex flex-col mb-8">
+          <form className="flex flex-col mb-8 md:mb-0 md:pb-0">
             <Label children="Bill" />
             <InputNumber
               type="number"
@@ -56,7 +57,7 @@ function App() {
             />
 
             <Label children="Select Tip %" />
-            <div className="flex gap-4 flex-wrap mb-8">
+            <div className="flex gap-4 flex-wrap mb-8 md:max-w-[400px]">
               {tips.map((t) => (
                 <Button
                   children={t}
